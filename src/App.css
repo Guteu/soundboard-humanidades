@@ -1,0 +1,20 @@
+button{
+    background: url("/transparent_button_small_sprite.png") red; /* Remover as bordas transparentes da imagem */
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 50%;
+    border: 0px;
+    width: 94px;
+    height: 89px;
+}
+
+audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-toggle-closed-captions-button,audio::-webkit-media-controls-seek-back-button, audio::-webkit-media-controls-seek-forward-button, audio::-webkit-media-controls-fullscreen-button, audio::-webkit-media-controls-rewind-button{
+    display: none;
+    position: absolute;
+}
+
+/*
+    caos e diversão
+    https://css-tricks.com/lets-create-a-custom-audio-player/
+    https://stackoverflow.com/questions/59024693/style-the-audio-html-tag
+*/
