@@ -1,5 +1,13 @@
-button{
-    background: url("/transparent_button_small_sprite.png") red; /* Remover as bordas transparentes da imagem */
+body {
+    background-image: url("../public/fundo-tijolo-otimizado\(1\).jpg");
+    background-size: cover;
+}
+
+button {
+    margin-bottom: 10px;
+    margin-right: 10px;
+    background: url("/transparent_button_small_sprite_better.png") red;
+    /* Remover as bordas transparentes da imagem */
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 50%;
@@ -8,13 +16,39 @@ button{
     height: 89px;
 }
 
-audio::-webkit-media-controls-play-button, audio::-webkit-media-controls-toggle-closed-captions-button,audio::-webkit-media-controls-seek-back-button, audio::-webkit-media-controls-seek-forward-button, audio::-webkit-media-controls-fullscreen-button, audio::-webkit-media-controls-rewind-button{
+.megaBox {
+    width: 85%;
+    margin: auto;
+}
+
+.box {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 15px;
+    margin-right: 15px;
+    margin-bottom: 15px;
+    width: 280px;
+    background-color: gray;
+    border: 5px solid black;
+    border-radius: 20px;
+}
+
+.box2{
+    width: 100%;
+    text-align: center;
+    background-color: gray;
+    border: 5px solid black;
+    border-radius: 20px;
+}
+
+audio::-webkit-media-controls-play-button,
+audio::-webkit-media-controls-toggle-closed-captions-button,
+audio::-webkit-media-controls-seek-back-button,
+audio::-webkit-media-controls-seek-forward-button,
+audio::-webkit-media-controls-fullscreen-button,
+audio::-webkit-media-controls-rewind-button {
     display: none;
     position: absolute;
 }
-
-/*
-    caos e diversão
-    https://css-tricks.com/lets-create-a-custom-audio-player/
-    https://stackoverflow.com/questions/59024693/style-the-audio-html-tag
-*/

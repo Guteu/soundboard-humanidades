@@ -1,49 +1,64 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 
-function Sound({soundSrc = "/chiado-tv.mp3", soundName = "Chiado de TV"}) {
+function Sound({ soundSrc = "/chiado-tv.mp3", soundName = "Chiado de TV" }) {
 	/**
 	 * @type {React.MutableRefObject<HTMLAudioElement>}
 	 */
 	const audio = useRef()
-	const [playing, setPlaying] = useState(false)
+	const buttonRef = useRef()
+	const [playing, setPlaying] = useState(false);
+
+	function onPlayEnded() {
+		buttonRef.current.style.backgroundPosition = "left"
+		setPlaying(() => false)
+	}
 
 	function togglePlay(e) {
 		e.preventDefault()
-		console.log(e.button)
-		switch(e.button) {
+		switch (e.button) {
 			case 0:
 				setPlaying(playing => !playing)
-				if(playing) {
+				if (playing) {
 					// mudar sprite do botão para normal
+					buttonRef.current.style.backgroundPosition = "left"
 					audio.current.pause()
 					return false
 				}
 				// mudar sprite do botão para tocando (amassado)
+				buttonRef.current.style.backgroundPosition = "right"
 				audio.current.play()
-			break;
+				break;
 			case 1:
-				
+				audio.current.pause()
+				audio.current.currentTime = 0
+				buttonRef.current.style.backgroundPosition = "left"
+				setPlaying(() => false)
 			break;
 			case 2:
 				let parallelAudio = new Audio(soundSrc)
+				parallelAudio.volume = audio.current.volume
 				parallelAudio.oncanplaythrough = () => parallelAudio.play()
 				parallelAudio.onpause = () => {
 					parallelAudio = null
 				}
-			break;
+				parallelAudio.ondurationchange = () => {
+					parallelAudio.volume = audio.current.volume
+				}
+				break;
 		}
-		return false
 	}
 
-	return(
+	return (
 		<>
-			<div>
+			<div className="box">
 				<p>{soundName}</p>
-				<button onMouseDown={togglePlay} onContextMenu={(e) => e.preventDefault()}></button>
-				<audio controls ref={audio}>
-					<source src={soundSrc} type="audio/mpeg"/>
+				<button onMouseDown={togglePlay} onKeyDown={(e) => {
+
+				}} onContextMenu={(e) => e.preventDefault()} ref={buttonRef}></button>
+				<audio controls ref={audio} onEnded={onPlayEnded}>
+					<source src={soundSrc} type="audio/mpeg" />
 				</audio>
 			</div>
 		</>
@@ -53,11 +68,26 @@ function Sound({soundSrc = "/chiado-tv.mp3", soundName = "Chiado de TV"}) {
 
 function App() {
 
-  return (
-    <>
-		<Sound/>
-    </>
-  )
+	return (
+		<>
+			<div className="megaBox">
+				<Sound />
+				<Sound />
+				<Sound />
+				<Sound />
+				<Sound />
+				<Sound />
+				<Sound />
+				<Sound soundName='Mega Sena' soundSrc='/mega-sena.mp3' />
+				<div className='box2'>
+					<h1>Controles</h1>
+					<p>Botão esquerdo: </p>
+					<p>Botão direito: </p>
+					<p>Botão do meio: </p>
+				</div>
+			</div>
+		</>
+	)
 }
 
 export default App
