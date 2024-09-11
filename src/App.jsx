@@ -9,10 +9,20 @@ function Sound({ soundSrc = "/chiado-tv.mp3", soundName = "Chiado de TV" }) {
 	const audio = useRef()
 	const buttonRef = useRef()
 	const [playing, setPlaying] = useState(false);
+	
+	function toggleButtonVisual(isPlaying){
+		setPlaying(() => isPlaying)
+		if(isPlaying) {
+			buttonRef.current.style.backgroundPosition = "right"
+			buttonRef.current.style.backgroundColor = "red"
+		} else {
+			buttonRef.current.style.backgroundPosition = "left"
+			buttonRef.current.style.backgroundColor = "green"
+		}
+	}
 
 	function onPlayEnded() {
-		buttonRef.current.style.backgroundPosition = "left"
-		setPlaying(() => false)
+		toggleButtonVisual(false)
 	}
 
 	function togglePlay(e) {
@@ -22,22 +32,18 @@ function Sound({ soundSrc = "/chiado-tv.mp3", soundName = "Chiado de TV" }) {
 				setPlaying(playing => !playing)
 				if (playing) {
 					// mudar sprite do botão para normal
-					buttonRef.current.style.backgroundPosition = "left"
-					buttonRef.current.style.backgroundColor = "green"
 					audio.current.pause()
+					toggleButtonVisual(false)
 					return false
 				}
 				// mudar sprite do botão para tocando (amassado)
-				buttonRef.current.style.backgroundPosition = "right"
-				buttonRef.current.style.backgroundColor = "red"
+				toggleButtonVisual(true)
 				audio.current.play()
 				break;
 			case 1:
 				audio.current.pause()
 				audio.current.currentTime = 0
-				buttonRef.current.style.backgroundPosition = "left"
-				buttonRef.current.style.backgroundColor = "green"
-				setPlaying(() => false)
+				toggleButtonVisual(false)
 				break;
 			case 2:
 				let parallelAudio = new Audio(soundSrc)
@@ -74,11 +80,11 @@ function App() {
 	return (
 		<>
 			<div className="megaBox">
-				<Sound soundName='Chiado de TV' soundSrc='./public/audios/Chiado_de_TV-Repórteres.m4a' />
-				<Sound soundName='Ato 1 - Cena 1' soundSrc='./public/audios/Ato_1-Cena_1.m4a' />
-				<Sound soundName='Notificação do Cancelamento' soundSrc='./public/audios/Notificação_Cancelamento.m4a'/>
-				<Sound soundName='Dança do Cancelamento' soundSrc='./public/audios/Dança_do_Cancelamento.m4a'/>
-				<Sound soundName='Dança do Humanidades 2' soundSrc='./public/audios/Dança_do_Humanidades_2.m4a'/>
+				<Sound soundName='Chiado de TV' soundSrc='/audios/Chiado_de_TV-Repórteres.m4a' />
+				<Sound soundName='Ato 1 - Cena 1' soundSrc='/audios/Ato_1-Cena_1.m4a' />
+				<Sound soundName='Notificação do Cancelamento' soundSrc='/audios/Notificação_Cancelamento.m4a'/>
+				<Sound soundName='Dança do Cancelamento' soundSrc='/audios/Dança_do_Cancelamento.m4a'/>
+				<Sound soundName='Dança do Humanidades 2' soundSrc='/audios/Dança_do_Humanidades_2.m4a'/>
 			</div>
 			<div className='controls'>
 				<h1>Controles</h1>
