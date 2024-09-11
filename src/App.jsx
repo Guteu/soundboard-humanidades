@@ -23,19 +23,22 @@ function Sound({ soundSrc = "/chiado-tv.mp3", soundName = "Chiado de TV" }) {
 				if (playing) {
 					// mudar sprite do botão para normal
 					buttonRef.current.style.backgroundPosition = "left"
+					buttonRef.current.style.backgroundColor = "green"
 					audio.current.pause()
 					return false
 				}
 				// mudar sprite do botão para tocando (amassado)
 				buttonRef.current.style.backgroundPosition = "right"
+				buttonRef.current.style.backgroundColor = "red"
 				audio.current.play()
 				break;
 			case 1:
 				audio.current.pause()
 				audio.current.currentTime = 0
 				buttonRef.current.style.backgroundPosition = "left"
+				buttonRef.current.style.backgroundColor = "green"
 				setPlaying(() => false)
-			break;
+				break;
 			case 2:
 				let parallelAudio = new Audio(soundSrc)
 				parallelAudio.volume = audio.current.volume
@@ -71,20 +74,17 @@ function App() {
 	return (
 		<>
 			<div className="megaBox">
-				<Sound />
-				<Sound />
-				<Sound />
-				<Sound />
-				<Sound />
-				<Sound />
-				<Sound />
-				<Sound soundName='Mega Sena' soundSrc='/mega-sena.mp3' />
-				<div className='box2'>
-					<h1>Controles</h1>
-					<p>Botão esquerdo: </p>
-					<p>Botão direito: </p>
-					<p>Botão do meio: </p>
-				</div>
+				<Sound soundName='Chiado de TV' soundSrc='./public/audios/Chiado_de_TV-Repórteres.m4a' />
+				<Sound soundName='Ato 1 - Cena 1' soundSrc='./public/audios/Ato_1-Cena_1.m4a' />
+				<Sound soundName='Notificação do Cancelamento' soundSrc='./public/audios/Notificação_Cancelamento.m4a'/>
+				<Sound soundName='Dança do Cancelamento' soundSrc='./public/audios/Dança_do_Cancelamento.m4a'/>
+				<Sound soundName='Dança do Humanidades 2' soundSrc='./public/audios/Dança_do_Humanidades_2.m4a'/>
+			</div>
+			<div className='controls'>
+				<h1>Controles</h1>
+				<p>Botão esquerdo: Tocar/Pausar audio</p>
+				<p>Botão direito: Pausar e reiniciar audio</p>
+				<p>Botão do meio: Tocar o audio em paralelo</p>
 			</div>
 		</>
 	)
