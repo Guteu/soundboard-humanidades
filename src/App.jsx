@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import './App.css'
 
 
-function Sound({ soundSrc = "/chiado-tv.mp3", soundName = "Chiado de TV" }) {
+function Sound({ soundSrc = "../public/audios/chiado-tv.mp3", soundName = "Chiado de TV" }) {
 	/**
 	 * @type {React.MutableRefObject<HTMLAudioElement>}
 	 */
@@ -80,11 +80,11 @@ function App() {
 	return (
 		<>
 			<div className="megaBox">
-				<Sound soundName='Chiado de TV' soundSrc='/audios/Chiado_de_TV-Repórteres.m4a' />
-				<Sound soundName='Ato 1 - Cena 1' soundSrc='/audios/Ato_1-Cena_1.m4a' />
-				<Sound soundName='Notificação do Cancelamento' soundSrc='/audios/Notificação_Cancelamento.m4a'/>
-				<Sound soundName='Dança do Cancelamento' soundSrc='/audios/Dança_do_Cancelamento.m4a'/>
-				<Sound soundName='Dança do Humanidades 2' soundSrc='/audios/Dança_do_Humanidades_2.m4a'/>
+				<Sound soundName='Chiado de TV' soundSrc='../public/audios/Chiado_de_TV-Repórteres.m4a' />
+				<Sound soundName='Ato 1 - Cena 1' soundSrc='../public/audios/Ato_1-Cena_1.m4a' />
+				<Sound soundName='Notificação do Cancelamento' soundSrc='../public/audios/Notificação_Cancelamento.m4a'/>
+				<Sound soundName='Dança do Cancelamento' soundSrc='../public/audios/Dança_do_Cancelamento.m4a'/>
+				<Sound soundName='Dança do Humanidades 2' soundSrc='../public/audios/Dança_do_Humanidades_2.m4a'/>
 			</div>
 			<div className='controls'>
 				<h1>Controles</h1>
